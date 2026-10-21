@@ -28,5 +28,7 @@ if not run("git", "remote", "get-url", "origin", capture_output=True).returncode
     if not p.returncode: p = run("git", "push", "origin", f"v{new}")
     if p.returncode: sys.exit(f"❌ الرفع لقيت هب ما نجح — تأكد إنك مسجّل دخول وأعد: git push origin HEAD:main && git push origin v{new}")
     print(f"✅ v{new} انرفع — المستخدمين يوصلهم التحديث بأول جلسة (خلال دقايق من بدايتها).")
+    run(sys.executable, os.path.join(R, "tools", "build.py"))
+    print(f"📦 لا تنسى زر «حمّل الملف»: افتح https://github.com/basitplatform/basit-video/releases/new ← اختار العلامة v{new} ← ارفع dist/basit-video.plugin ← Publish release")
 else:
     print(f"✅ v{new} انحفظ محلياً. ماكو origin — اربط المستودع أول (شوف README).")

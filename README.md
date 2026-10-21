@@ -5,7 +5,9 @@
 <p align="center"><b>تحچي للكاميرا… وتستلم ريل عمودي جاهز للنشر.</b><br>
 يشيل السكتات، يكتب كابشن عربي يمشي ويّا كلامك، ويرسم موشن قرافيكس بهوية بسيط — بلا برنامج مونتاج، وفيديوك ما يطلع من جهازك.</p>
 
-<p align="center"><a href="#install"><img src="assets/btn-install.png" alt="نصّبه بأمر واحد — ويتحدّث لحاله" width="420"></a></p>
+<p align="center"><a href="#install"><img src="assets/btn-install.png" alt="نصّبه بأمر واحد — ويتحدّث لحاله" width="400"></a>&nbsp;<a href="https://github.com/basitplatform/basit-video/releases/latest/download/basit-video.plugin"><img src="assets/btn-download.png" alt="حمّل الملف — لتطبيق كلود" width="400"></a></p>
+
+<p align="center"><sub>⚡ <b>الأمر الواحد</b> (الأحسن): ينصّبه ويتحدّث لحاله · ⬇️ <b>الملف</b>: ترفعه بتطبيق كلود بلا طرفية</sub></p>
 
 <a id="install"></a>
 
@@ -53,6 +55,14 @@ curl -fsSL https://raw.githubusercontent.com/basitplatform/basit-video/main/inst
 
 ### 🔄 التحديثات توصلك لحالها
 كل ما ينزل إصدار جديد، Claude Code يجيبه بأول جلسة تفتحها. ما تحتاج تسوّي شي.
+
+### 📥 بدون طرفية — حمّل الملف وارفعه بتطبيق كلود
+
+1. [**حمّل البلقن**](https://github.com/basitplatform/basit-video/releases/latest/download/basit-video.plugin) — ملف `basit-video.plugin` ينزل بمجلد التنزيلات (أو أي مكان تختاره).
+2. افتح تطبيق **Claude** ← **Customize** ← **Plugins** ← **Upload plugin** ← اختار الملف.
+3. افتح جلسة جديدة بتبويب **Code** واكتب «سويلي ريل من هالفيديو».
+
+> ⚠️ هالطريقة **ما تتحدّث لحالها** — كل ما ينزل إصدار جديد، حمّل الملف مرة ثانية وارفعه. تريد تحديث تلقائي؟ استخدم الأمر الواحد فوق.
 
 <details><summary>تنصيب يدوي (بدون السكربت)</summary>
 

@@ -57,6 +57,10 @@ shot("btn-install.png", 832, 148, "<div class='b'><span>⚡</span> نصّبه ب
 html,body{{background:transparent}} .b{{margin:14px auto;width:800px;height:120px;border-radius:60px;background:{CORAL};color:{WHITE};
 display:flex;align-items:center;justify-content:center;gap:16px;font-weight:900;font-size:42px;box-shadow:0 12px 30px rgba(251,87,52,.35)}}""", bg="transparent")
 
+shot("btn-download.png", 832, 148, "<div class='b'><span>⬇️</span> حمّل الملف — لتطبيق كلود</div>", f"""
+html,body{{background:transparent}} .b{{margin:14px auto;width:800px;height:120px;border-radius:60px;background:{WHITE};color:{NAVY};border:5px solid {SKY};
+display:flex;align-items:center;justify-content:center;gap:16px;font-weight:900;font-size:40px;box-shadow:0 12px 30px rgba(21,85,127,.18)}}""", bg="transparent")
+
 # 3) ثلاث خطوات
 card = lambda n, t, s, extra, foot: (f"<div class='c'><div class='n'>{n}</div><h2>{t}</h2><p>{s}</p>{extra}<div class='f'>{foot}</div></div>")
 shot("start-steps.png", 1600, 640, "<div class='row'>"
