@@ -10,3 +10,4 @@ video-ad-editor/scripts/facetrack
 # deep-filter بايناري ينزل محلياً (--extras) — ما يدخل المستودع
 video-ad-editor/bin/
 tools/previews/build/
+_readme_preview.html
