@@ -2,7 +2,7 @@
 #   python tools/release.py            ← يرفع رقم الإصدار (3.5.0 ← 3.5.1)
 #   python tools/release.py minor      ← (3.5.0 ← 3.6.0)    · major ← (4.0.0)
 #   python tools/release.py --dry      ← يفحص بس، بلا حفظ ولا رفع
-# يسوّي: يرفع الرقم بـplugin.json وVERSION ← يفحص البلقن ← commit ← tag ← push. المستخدمين يوصلهم التحديث لحاله.
+# يسوّي: يرفع الرقم بـplugin.json وVERSION ← يفحص البلقن ← commit ← tag ← push (الفرع main وعلامة الإصدار بس). المستخدمين يوصلهم التحديث لحاله.
 import json, os, subprocess, sys
 sys.stdout.reconfigure(encoding="utf-8"); sys.stderr.reconfigure(encoding="utf-8")
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,8 +24,9 @@ run("git", "add", "-A", check=True)
 run("git", "commit", "-q", "-m", f"v{new}", check=True)
 run("git", "tag", f"v{new}", check=True)
 if not run("git", "remote", "get-url", "origin", capture_output=True).returncode:
-    p = run("git", "push", "origin", "HEAD:main", "--tags")
-    if p.returncode: sys.exit("❌ الرفع لقيت هب ما نجح — تأكد إنك مسجّل دخول وأعد: git push origin HEAD:main --tags")
+    p = run("git", "push", "origin", "HEAD:main")   # الفرع بس — مو --tags (حتى ما ترتفع علامات قديمة)
+    if not p.returncode: p = run("git", "push", "origin", f"v{new}")
+    if p.returncode: sys.exit(f"❌ الرفع لقيت هب ما نجح — تأكد إنك مسجّل دخول وأعد: git push origin HEAD:main && git push origin v{new}")
     print(f"✅ v{new} انرفع — المستخدمين يوصلهم التحديث بأول جلسة (خلال دقايق من بدايتها).")
 else:
     print(f"✅ v{new} انحفظ محلياً. ماكو origin — اربط المستودع أول (شوف README).")
