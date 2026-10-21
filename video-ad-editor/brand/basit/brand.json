@@ -1,0 +1,52 @@
+{
+  "_note": "هوية منصة بسيط — كل الإعدادات البصرية هنا. عدّل هالملف بس، والكود يقراه عن طريق scripts/00_brand.py.",
+  "name": "منصة بسيط",
+  "tagline": "بسيط | تعلّم لتصنع الفرق",
+  "links": {
+    "site": "https://basit.tv",
+    "instagram": "https://www.instagram.com/basit_platform/",
+    "facebook": "https://facebook.com/basit.platform/"
+  },
+  "handle": "@basit_platform",
+  "colors": {
+    "navy": "#15557F",
+    "deepBlue": "#125B8D",
+    "blue": "#2A8FC1",
+    "sky": "#23A1D3",
+    "white": "#FFFFFF",
+    "light": "#EEF3F6",
+    "coral": "#FB5734"
+  },
+  "theme": {
+    "bg": "navy",
+    "ink": "white",
+    "acc": "sky",
+    "clay": "coral",
+    "mut": "light",
+    "coverBg": "light"
+  },
+  "font": {
+    "family": "Montserrat Arabic",
+    "files": [
+      { "file": "MontserratArabic-250.otf", "weight": 250 },
+      { "file": "MontserratArabic-275.otf", "weight": 275 },
+      { "file": "MontserratArabic-300.otf", "weight": 300 },
+      { "file": "MontserratArabic-400.otf", "weight": 400 },
+      { "file": "MontserratArabic-500.otf", "weight": 500 },
+      { "file": "MontserratArabic-600.otf", "weight": 600 },
+      { "file": "MontserratArabic-700.otf", "weight": 700 },
+      { "file": "MontserratArabic-800.otf", "weight": 800 },
+      { "file": "MontserratArabic-900.otf", "weight": 900 }
+    ]
+  },
+  "logo": { "onDark": "logo-white.png", "onLight": "logo-color.png" },
+  "outro": {
+    "l1": "منصة بسيط",
+    "l2": "دورات وورش تطبيقية بصناعة المحتوى والتصميم والذكاء الاصطناعي",
+    "cta": "تابعنا",
+    "word": "basit.tv",
+    "sub": "بسيط | تعلّم لتصنع الفرق",
+    "chips": ["صناعة المحتوى", "التصميم", "الذكاء الاصطناعي", "ورش تطبيقية"]
+  },
+  "style": "عصري واحترافي ونظيف: ألواح كحلي وأزرق مسطّحة، أبيض للنص، سماوي للتمييز، مرجاني للإبراز بس عند الحاجة. بلا حدود حول النص، تباين واضح، ومساحات مريحة. الشعار الرسمي كما هو — لا تعيد رسمه ولا تغيّر ألوانه."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "basit",
+  "owner": {
+    "name": "منصة بسيط",
+    "url": "https://basit.tv"
+  },
+  "description": "متجر بلقنات منصة بسيط",
+  "plugins": [
+    {
+      "name": "basit-video",
+      "source": "./",
+      "description": "بلقن الفيديو العربي لمنصة بسيط — ريل، بودكاست، مونتاج، موشن، كفرات. عراقي وبهوية بسيط."
+    }
+  ]
+}
