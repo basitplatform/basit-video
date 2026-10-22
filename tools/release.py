@@ -6,6 +6,31 @@
 import json, os, subprocess, sys
 sys.stdout.reconfigure(encoding="utf-8"); sys.stderr.reconfigure(encoding="utf-8")
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+def publish_release(ver):
+    """يسوّي Release على قيت هب ويرفع dist/basit-video.plugin (زر «حمّل الملف» بالصفحة) — بتسجيل الدخول المحفوظ بقيت."""
+    import urllib.request, urllib.error
+    repo = "basitplatform/basit-video"
+    cr = subprocess.run(["git", "credential", "fill"], input="protocol=https\nhost=github.com\n\n", capture_output=True, text=True, timeout=60)
+    tok = next((l.split("=", 1)[1] for l in cr.stdout.splitlines() if l.startswith("password=")), None)
+    if not tok:
+        print(f"⚠️ ما لكيت تسجيل دخول قيت هب محفوظ — ارفع الملف بإيدك: https://github.com/{repo}/releases/new (العلامة v{ver})"); return
+    H = {"Authorization": "Bearer " + tok, "Accept": "application/vnd.github+json", "User-Agent": "basit-release", "X-GitHub-Api-Version": "2022-11-28"}
+    def call(url, data=None, method="GET", extra=None):
+        req = urllib.request.Request(url, data=data, method=method, headers={**H, **(extra or {})})
+        try:
+            with urllib.request.urlopen(req, timeout=300) as f: return f.status, json.loads(f.read() or b"{}")
+        except urllib.error.HTTPError as e: return e.code, json.loads(e.read() or b"{}")
+    body = (f"## basit-video v{ver}\n\n**تنصيب ويتحدّث لحاله** — ويندوز: `irm https://raw.githubusercontent.com/{repo}/main/install.ps1 | iex` · "
+            f"ماك/لينكس: `curl -fsSL https://raw.githubusercontent.com/{repo}/main/install.sh | bash`\n\n"
+            "أو حمّل `basit-video.plugin` من تحت وارفعه بتطبيق كلود (Customize ← Plugins ← Upload plugin).")
+    st, rel = call(f"https://api.github.com/repos/{repo}/releases", json.dumps({"tag_name": f"v{ver}", "name": f"basit-video v{ver}", "body": body, "make_latest": "true"}).encode(), "POST", {"Content-Type": "application/json"})
+    if st not in (200, 201):
+        print(f"⚠️ ما كدرت أسوّي الـRelease ({st} {rel.get('message', '')}) — ارفع الملف بإيدك من https://github.com/{repo}/releases/new"); return
+    data = open(os.path.join(R, "dist", "basit-video.plugin"), "rb").read()
+    st, a = call(rel["upload_url"].split("{")[0] + "?name=basit-video.plugin", data, "POST", {"Content-Type": "application/zip"})
+    print(f"✅ زر «حمّل الملف» صار على v{ver}: {rel.get('html_url')}" if st in (200, 201) else f"⚠️ الـRelease انسوّى بس الملف ما انرفع ({st}) — ارفعه بإيدك: {rel.get('html_url')}")
+
+
 args = sys.argv[1:]; part = next((a for a in args if a in ("patch", "minor", "major")), "patch"); DRY = "--dry" in args
 run = lambda *c, **k: subprocess.run(list(c), cwd=R, **k)
 if run("git", "status", "--porcelain", capture_output=True, text=True).stdout.strip() and not DRY:
@@ -28,7 +53,7 @@ if not run("git", "remote", "get-url", "origin", capture_output=True).returncode
     if not p.returncode: p = run("git", "push", "origin", f"v{new}")
     if p.returncode: sys.exit(f"❌ الرفع لقيت هب ما نجح — تأكد إنك مسجّل دخول وأعد: git push origin HEAD:main && git push origin v{new}")
     print(f"✅ v{new} انرفع — المستخدمين يوصلهم التحديث بأول جلسة (خلال دقايق من بدايتها).")
-    run(sys.executable, os.path.join(R, "tools", "build.py"))
-    print(f"📦 لا تنسى زر «حمّل الملف»: افتح https://github.com/basitplatform/basit-video/releases/new ← اختار العلامة v{new} ← ارفع dist/basit-video.plugin ← Publish release")
+    run(sys.executable, os.path.join(R, "tools", "build.py"), check=True)
+    publish_release(new)
 else:
     print(f"✅ v{new} انحفظ محلياً. ماكو origin — اربط المستودع أول (شوف README).")
